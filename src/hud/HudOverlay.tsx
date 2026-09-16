@@ -119,10 +119,10 @@ export const HudOverlay: React.FC = () => {
           label = 'ACT IV // ARENA GATE';
           badgeColor = '#f59e0b';
         } else if (isAct3) {
-          label = 'ACT III // SLINGSHOT';
-          badgeColor = '#2dd4bf';
+          label = 'ACT III // ACCESS PROTOCOL';
+          badgeColor = '#f87171';
         } else if (isAct2) {
-          label = 'ACT II // ACCELERATION';
+          label = 'ACT II // PLAYER DETECTED';
           badgeColor = '#06b6d4';
         }
 
@@ -311,7 +311,7 @@ export const HudOverlay: React.FC = () => {
         {/* ACT 1: Hidden div to prevent layout overhead */}
         <div ref={act1TextRef} style={{ display: 'none' }} />
 
-        {/* ACT 2: Cosmic Coordinate Acceleration */}
+        {/* ACT 2: Player Detected / SIAM-VIT Equations */}
         <div
           ref={act2TextRef}
           style={{
@@ -322,20 +322,30 @@ export const HudOverlay: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             opacity: 0,
+            padding: '0 20px',
           }}
         >
-          <span className="mono-label" style={{ color: '#06b6d4', letterSpacing: '0.25em', marginBottom: '8px' }}>
-            ACT II // ACCELERATION
-          </span>
-          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.8rem)', fontWeight: 700, color: '#f8fafc', textTransform: 'uppercase' }}>
-            COSMIC ACCELERATION
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+            <span className="mono-label" style={{ color: '#06b6d4', letterSpacing: '0.22em', fontSize: '11px' }}>
+              53 49 41 4D // HPBN // FVNZ
+            </span>
+            <span className="mono-label" style={{ color: '#64748b', fontSize: '11px' }}>•</span>
+            <span className="mono-label" style={{ color: '#fde047', letterSpacing: '0.18em', fontSize: '11px' }}>
+              SIAM-VIT
+            </span>
+          </div>
+          <h2 style={{ fontSize: 'clamp(2rem, 5.2vw, 3.8rem)', fontWeight: 800, color: '#f8fafc', textTransform: 'uppercase', letterSpacing: '0.04em', margin: 0 }}>
+            [ PLAYER DETECTED ]
           </h2>
-          <p style={{ color: '#94a3b8', maxWidth: '480px', marginTop: '12px', fontSize: '0.95rem' }}>
-            Concentric celestial cylinders align. Archimedean geodesics ignite along the speed corridor.
+          <p style={{ color: '#e2e8f0', fontSize: 'clamp(1rem, 2vw, 1.25rem)', fontWeight: 600, marginTop: '10px', marginBottom: '4px', letterSpacing: '0.03em' }}>
+            Your move. Your logic. Your game.
+          </p>
+          <p style={{ color: '#94a3b8', maxWidth: '540px', marginTop: '6px', fontSize: '0.95rem', lineHeight: '1.5' }}>
+            Where equations spark ideas, and ideas become innovation.
           </p>
         </div>
 
-        {/* ACT 3: Gravitational Slingshot */}
+        {/* ACT 3: Access Denied / The Logic Gauntlet */}
         <div
           ref={act3TextRef}
           style={{
@@ -346,16 +356,20 @@ export const HudOverlay: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             opacity: 0,
+            padding: '0 20px',
           }}
         >
-          <span className="mono-label" style={{ color: '#2dd4bf', letterSpacing: '0.25em', marginBottom: '8px' }}>
-            ACT III // SLINGSHOT
+          <span className="mono-label" style={{ color: '#f87171', letterSpacing: '0.25em', marginBottom: '8px', fontSize: '11px' }}>
+            SECURITY PROTOCOL // MATH PREMIER LEAGUE
           </span>
-          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.8rem)', fontWeight: 700, color: '#f8fafc', textTransform: 'uppercase' }}>
-            RODRIGUES VIEW BANK
+          <h2 style={{ fontSize: 'clamp(2rem, 5.2vw, 3.8rem)', fontWeight: 800, color: '#fca5a5', textTransform: 'uppercase', letterSpacing: '0.04em', margin: 0, textShadow: '0 0 35px rgba(239, 68, 68, 0.45)' }}>
+            ACCESS: DENIED
           </h2>
-          <p style={{ color: '#94a3b8', maxWidth: '500px', marginTop: '12px', fontSize: '0.95rem' }}>
-            Dynamic lateral & dip vectors engaged. Camera up-vector rolls around the flight trajectory axis.
+          <p style={{ color: '#e2e8f0', fontSize: 'clamp(1rem, 2vw, 1.25rem)', fontWeight: 600, marginTop: '10px', marginBottom: '6px', letterSpacing: '0.03em' }}>
+            Think you can find your way in?
+          </p>
+          <p style={{ color: '#2dd4bf', maxWidth: '520px', marginTop: '8px', fontSize: '0.95rem', fontFamily: 'JetBrains Mono, monospace', fontWeight: 600, letterSpacing: '0.04em' }}>
+            &gt; ENTER MPL — No hints. No shortcuts. Just skill.
           </p>
         </div>
       </div>
@@ -504,7 +518,7 @@ export const HudOverlay: React.FC = () => {
                 className="mono-label"
                 style={{ fontSize: '9px', color: '#475569', letterSpacing: '0.08em', transition: 'color 0.2s' }}
               >
-                II: ACCELERATION
+                II: PLAYER DETECTED
               </span>
             </div>
             <div
@@ -528,7 +542,7 @@ export const HudOverlay: React.FC = () => {
             </div>
           </button>
 
-          {/* Segment 3: Act III Slingshot */}
+          {/* Segment 3: Act III Access Protocol */}
           <button
             type="button"
             onClick={() => scrollToAct(0.42)}
@@ -560,7 +574,7 @@ export const HudOverlay: React.FC = () => {
                 className="mono-label"
                 style={{ fontSize: '9px', color: '#475569', letterSpacing: '0.08em', transition: 'color 0.2s' }}
               >
-                III: SLINGSHOT
+                III: ACCESS PROTOCOL
               </span>
             </div>
             <div
