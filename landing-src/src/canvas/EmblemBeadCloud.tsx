@@ -356,10 +356,11 @@ export const EmblemBeadCloud: React.FC = () => {
   // Load official high-res logo texture with sRGB color space & anisotropic filtering
   const logoTexture = useMemo(() => {
     const loader = new THREE.TextureLoader();
-    const tex = loader.load('/mpl_logo.png');
+    const tex = loader.load(`${import.meta.env.BASE_URL}mpl_logo.png`);
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.minFilter = THREE.LinearMipmapLinearFilter;
     tex.magFilter = THREE.LinearFilter;
+    tex.anisotropy = 8;
     tex.generateMipmaps = true;
     return tex;
   }, []);
@@ -390,10 +391,10 @@ export const EmblemBeadCloud: React.FC = () => {
     return geo;
   }, [sphereGeo, initialData, COUNT]);
 
-  // Asynchronously sample from the uploaded logo image (/mpl_logo.png)
+  // Asynchronously sample from the logo image (mpl_logo.png, resolved via BASE_URL)
   useEffect(() => {
     const img = new Image();
-    img.src = '/mpl_logo.png';
+    img.src = `${import.meta.env.BASE_URL}mpl_logo.png`;
     img.onload = () => {
       const canvas = document.createElement('canvas');
       canvas.width = img.width;
