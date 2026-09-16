@@ -11,11 +11,11 @@ The API must run on **port 8000** — the pages assume it (see §6).
 
 ## 1. Features
 
-**Pages (flow: landing → hub → arenas)**
+**Pages (flow: landing film → hub → arenas)**
 
 | File | Purpose |
 |---|---|
-| `landing.html` | Entry page: crest hero, starfield + parallax, tech-font switcher (choice persisted). Log In goes straight to the hub — the landing has **no login of its own** |
+| `landing/` | Entry: React + three.js cosmic film, Acts I–IV (source in `landing-src/`). Act IV hands off to the hub — the film has **no login of its own** |
 | `index.html` | Arena hub: cards for console / boost / challenge. Challenge card stays **locked with a toast** until an admin starts a session |
 | `main.html` | MAIN round coding console ← the editor (details below) |
 | `boost.html` | Time-boost bidding page (legacy round) |
@@ -96,7 +96,7 @@ git clone <frontend-repo-url> MPL-FE
 notepad MPL-BE\.env        # set:  FRONTEND_DIR=../MPL-FE
 ```
 
-Start the API, open `http://localhost:8000/ui/landing.html`.
+Start the API, open `http://localhost:8000/ui/landing/`.
 One process, one URL, no CORS.
 
 ### 3.3 Option B — Live Server (for editing HTML/CSS)
@@ -106,8 +106,8 @@ Serve this folder (or its parent) with VS Code Live Server /
 
 | Server root | Open |
 |---|---|
-| this folder (`MPL-FE`) | `http://127.0.0.1:5500/landing.html` |
-| parent (`D:\projects`) | `http://127.0.0.1:5500/MPL-FE/landing.html` |
+| this folder (`MPL-FE`) | `http://127.0.0.1:5500/landing/` |
+| parent (`D:\projects`) | `http://127.0.0.1:5500/MPL-FE/landing/` |
 
 The API must still run on port 8000 — the pages call it across origins.
 
@@ -201,7 +201,7 @@ bug — report the raw `judge_status`/`judge_status_id` from the response.
 **Base URL:** `hub/boost/challenge/admin.js` hardcode
 `http://localhost:8000`. `main.js` (console) uses same-origin when served
 from `:8000`, else falls back to `http://localhost:8000`.
-`landing.js` calls no API.
+The landing film calls no API.
 
 **Endpoints used, by page:**
 
@@ -211,7 +211,7 @@ from `:8000`, else falls back to `http://localhost:8000`.
 | `boost.html` | login · `GET /api/teams/{id}/status` · `GET /api/questions/{id}` · `GET …/sample-tests` |
 | `challenge.html` | login · `GET /api/teams/{id}/status` · `GET /api/questions/{id}` · `GET …/sample-tests` |
 | `admin.html` | `admin-passcode` header + `/api/admin/*` (teams, questions, test-cases, challenge/create, assign-boost, mark-solved, leaderboard, judge/health) |
-| `index.html`, `landing.html` | none |
+| `index.html`, `landing/` | none |
 
 **Browser storage:** sessions in `sessionStorage` (`mpl_team`,
 `mpl_boost_team`, `mpl_challenge_team`, `mpl_admin_pass`) — per tab.
@@ -224,13 +224,21 @@ README §7.
 ## 7. Structure & editing
 
 ```
-landing.html index.html main.html boost.html challenge.html admin.html
+landing/ index.html main.html boost.html challenge.html admin.html
+landing-src/  (React + three.js film source — build emits to landing/)
 assets/
   css/   shared-theme.css (tokens/glass/cosmic system, every page)
-         + landing · hub · main · boost · challenge · admin
+         + hub · main · boost · challenge · admin
   js/    cosmic-interaction.js (cursor stars/parallax)
-         + landing · hub · main · boost · challenge · admin
+         + hub · main · boost · challenge · admin
   images/  mpl-crest.png · cosmic-background.jpg
+```
+
+Rebuild the film (needs Node 18+; output is committed, so normal runs need no Node):
+```
+cd landing-src
+npm ci
+npm run build   # emits to ../landing/
 ```
 
 Rules: one stylesheet + one script per page; keep every reference
